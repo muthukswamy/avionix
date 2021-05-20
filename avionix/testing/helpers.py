@@ -41,6 +41,9 @@ def _split_using_locations(locations: List[Tuple[int, int]], values_string: str)
 
 def parse_output_to_dict(output: str):
     output_lines = output.split("\n")
+    # Remove warning lines
+    if output_lines[0].find('WARNING') != -1:
+        output_lines.pop(0)
     names = _space_split(output_lines[0])
     value_locations = _get_name_locations(names, output_lines[0])
     value_rows = []
